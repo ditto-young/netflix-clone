@@ -34,7 +34,7 @@ function Row({title, fetchUrl, isLargeRow}) {
 
     const handleClick = (movie) => {
         if(trailerUrl) {
-            setTrailerUrl("");
+            setTrailerUrl('');
         } else {
             movieTrailer(movie?.name || "")
             .then((url) => {
@@ -50,15 +50,15 @@ function Row({title, fetchUrl, isLargeRow}) {
             <h2>{title}</h2>
 
             <div className="row__posters">
-                {/* several row__poster(s) */}
-                {movies.map(movie => (
+                {movies.map((movie) => (
                 <img
                     key={movie.id}
                     onClick={() => handleClick(movie)}
                     className={`row__poster ${isLargeRow && "row__posterLarge"}`}
                     src={`${base_url}${
                         isLargeRow ? movie.poster_path : movie.backdrop_path}`} 
-                    alt={movie.name}/>
+                    alt={movie.name}
+                    />
                 ))}
             </div>
             {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
